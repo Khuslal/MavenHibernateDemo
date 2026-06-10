@@ -1,16 +1,21 @@
 package com.model;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-
 public class Test {
 	public static void main(String[] args) {
 //		add();
-		delete();
+		update();
+//		delete();
+		getAll();
 	}
 
+	// static is declared here for not to create the object of the Test class
 	// add student
 	static void add() {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
@@ -30,6 +35,21 @@ public class Test {
 
 	}
 
+	// update data
+	static void update() {
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session session = sf.openSession();
+		session.beginTransaction();
+
+		Student s = session.get(Student.class, 3); // 3 is the id you want to update
+		s.setCity("Banglore");
+		s.setCollege("Parul University");
+
+		session.update(s);
+		session.getTransaction().commit();
+		session.close();
+	}
+
 	// delete data
 	static void delete() {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
@@ -42,4 +62,14 @@ public class Test {
 		session.getTransaction().commit();
 		session.close();
 	}
+	
+	// select or retrieve data
+		static void getAll() {
+			SessionFactory sf = new Configuration().configure().buildSessionFactory();
+			Session session = sf.openSession();
+			
+			Criteria crt = session.createCriteria(Student.class);
+			List<Student> slist = crt.list();
+			System.out.println(slist);
+		}
 }

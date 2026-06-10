@@ -62,7 +62,11 @@ public class Student {
 	public void setCity(String city) {
 		this.city = city;
 	}
-
-
-
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", fname=" + fname + ", lname=" + lname + ", college=" + college + ", age=" + age
+				+ ", city=" + city + "]";
+	}
+	
+	
 }

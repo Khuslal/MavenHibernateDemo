@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/StudentDBHibernate?createDatabaseIfNotExists=true</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/StudentDBHibernate?createDatabaseIfNotExist=true</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">password</property>
         <property name="hibernate.connection.pool_size">1</property>
@@ -13,8 +13,12 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
 
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 		
         <mapping class="com.model.Student" />
+        <mapping class="com.model.Employee" />
+        <mapping class="com.model.Address" />
+        <mapping class="com.model.Department" />
+        <mapping class="com.model.Phone" />
     </session-factory>
 </hibernate-configuration>
