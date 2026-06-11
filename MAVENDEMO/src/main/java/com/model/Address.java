@@ -2,6 +2,7 @@ package com.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -9,9 +10,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "address")
 public class Address {
-
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String country;
 	private String city;
@@ -20,6 +20,7 @@ public class Address {
 	@OneToOne(mappedBy = "address")
 	private Employee employee;
 
+	// Getters and Setters
 	public int getId() {
 		return id;
 	}
@@ -59,5 +60,4 @@ public class Address {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-
 }
